@@ -39,3 +39,7 @@ C:\Users\druoc\source\repos\CodingTracker\obj\Debug\net6.0\refint\CodingTracker.
 C:\Users\druoc\source\repos\CodingTracker\obj\Debug\net6.0\CodingTracker.pdb
 C:\Users\druoc\source\repos\CodingTracker\obj\Debug\net6.0\CodingTracker.genruntimeconfig.cache
 C:\Users\druoc\source\repos\CodingTracker\obj\Debug\net6.0\ref\CodingTracker.dll
+C:\Users\druoc\source\repos\CodingTracker\bin\Debug\net6.0\Spectre.Console.Cli.dll
+C:\Users\druoc\source\repos\CodingTracker\bin\Debug\net6.0\de\Spectre.Console.Cli.resources.dll
+C:\Users\druoc\source\repos\CodingTracker\bin\Debug\net6.0\fr\Spectre.Console.Cli.resources.dll
+C:\Users\druoc\source\repos\CodingTracker\bin\Debug\net6.0\sv\Spectre.Console.Cli.resources.dll

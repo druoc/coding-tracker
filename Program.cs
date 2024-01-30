@@ -1,5 +1,4 @@
 ﻿using Microsoft.Data.Sqlite;
-using Spectre.Console;
 
 
 namespace CodingTracker
@@ -25,6 +24,7 @@ namespace CodingTracker
                 tableCmd.ExecuteNonQuery();
                 connection.Close();
             }
+            UserInput.GetUserInput();
         }
     }
 }

@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "hBv275dZccUs9baMlwDdsWUGl32DUNSAJyr+K6Zdt/e7YCZ7NSEhxyjmlpwIFzbZB023Mv5V/Lz/+rDHSQpj4g==",
+  "dgSpecHash": "Qdq4xdkXw56dnZY+bQ+3l5UPMCHteTsJCepGpwBdMsvALb+S7Jf8ob3fZSq5or454EfcDhAhVjvvtAL989qK8A==",
   "success": true,
   "projectFilePath": "C:\\Users\\druoc\\source\\repos\\CodingTracker\\CodingTracker.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\druoc\\.nuget\\packages\\microsoft.data.sqlite\\8.0.1\\microsoft.data.sqlite.8.0.1.nupkg.sha512",
     "C:\\Users\\druoc\\.nuget\\packages\\microsoft.data.sqlite.core\\8.0.1\\microsoft.data.sqlite.core.8.0.1.nupkg.sha512",
     "C:\\Users\\druoc\\.nuget\\packages\\spectre.console\\0.48.0\\spectre.console.0.48.0.nupkg.sha512",
+    "C:\\Users\\druoc\\.nuget\\packages\\spectre.console.cli\\0.48.0\\spectre.console.cli.0.48.0.nupkg.sha512",
     "C:\\Users\\druoc\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.6\\sqlitepclraw.bundle_e_sqlite3.2.1.6.nupkg.sha512",
     "C:\\Users\\druoc\\.nuget\\packages\\sqlitepclraw.core\\2.1.6\\sqlitepclraw.core.2.1.6.nupkg.sha512",
     "C:\\Users\\druoc\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.6\\sqlitepclraw.lib.e_sqlite3.2.1.6.nupkg.sha512",

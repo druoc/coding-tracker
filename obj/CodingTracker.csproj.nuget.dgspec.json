@@ -51,6 +51,10 @@
             "Spectre.Console": {
               "target": "Package",
               "version": "[0.48.0, )"
+            },
+            "Spectre.Console.Cli": {
+              "target": "Package",
+              "version": "[0.48.0, )"
             }
           },
           "imports": [
