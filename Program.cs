@@ -24,7 +24,7 @@ namespace CodingTracker
                 tableCmd.ExecuteNonQuery();
                 connection.Close();
             }
-            UserInput.GetUserInput();
+            UserInput.GetUserInput(connectionString);
         }
     }
 }
