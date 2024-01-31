@@ -34,7 +34,7 @@ namespace CodingTracker
                         CodingController.InsertRecord(connectionString);
                         break;
                     case "Update a record":
-                        AnsiConsole.WriteLine("Update a record\n\n");
+                        CodingController.UpdateRecord(connectionString);
                         break;
                     case "Delete a record":
                         CodingController.DeleteRecord(connectionString);

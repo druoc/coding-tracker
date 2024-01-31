@@ -71,6 +71,39 @@ namespace CodingTracker
             }
         }
 
+        public static void UpdateRecord(string connectionString)
+        {
+            AnsiConsole.Clear();
+            GetAllRecords(connectionString);
+            var recordId = AnsiConsole.Ask<int>("Please enter the ID of the record you want to update");
+
+            using (var connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+
+                var checkCmd = connection.CreateCommand();
+                checkCmd.CommandText =
+                    $"SELECT EXISTS(SELECT 1 FROM daily_coding WHERE Id = {recordId})";
+                int checkQuery = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                if (checkQuery == 0)
+                {
+                    AnsiConsole.WriteLine($"Record with ID {recordId} does not exist");
+                    connection.Close();
+                    UpdateRecord(connectionString);
+                }
+
+                string newStartTime = GetDateInput();
+                string newEndTime = GetDateInput();
+
+                var tableCmd = connection.CreateCommand();
+                tableCmd.CommandText = $"UPDATE daily_coding SET StartTime = '{newStartTime}', EndTime = '{newEndTime}' WHERE Id = {recordId}";
+                tableCmd.ExecuteNonQuery();
+                connection.Close();
+            }
+
+        }
+
         public static void DeleteRecord(string connectionString)
         {
             AnsiConsole.Clear();
@@ -100,7 +133,7 @@ namespace CodingTracker
 
         public static string GetDateInput()
         {
-            var dateInput = AnsiConsole.Ask<string>("Please enter the date: (Format: dd-MM-yyyy HH:mm) Type 0 to return to main menu");
+            var dateInput = AnsiConsole.Ask<string>("Please enter the date: (Format: dd-MM-yyyy HH:mm)");
 
             while (!DateTime.TryParseExact(dateInput, "dd-MM-yyyy HH:mm", new CultureInfo("en-US"), DateTimeStyles.None, out _))
             {
