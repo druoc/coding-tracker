@@ -13,6 +13,7 @@ namespace CodingTracker
     {
         public static void GetAllRecords(string connectionString)
         {
+            AnsiConsole.Clear();
             List<CodingRecord> tableData = new List<CodingRecord>();
 
             using (var connection = new SqliteConnection(connectionString))
@@ -53,6 +54,7 @@ namespace CodingTracker
 
         public static void InsertRecord(string connectionString)
         {
+            AnsiConsole.Clear();
             string startTime = GetDateInput();
             string endTime = GetDateInput();
 
@@ -67,6 +69,33 @@ namespace CodingTracker
                 tableCmd.ExecuteNonQuery();
                 connection.Close();
             }
+        }
+
+        public static void DeleteRecord(string connectionString)
+        {
+            AnsiConsole.Clear();
+            GetAllRecords(connectionString);
+
+            var recordId = AnsiConsole.Ask<int>("Please enter the ID of the record you want to delete");
+
+            using (var connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+                var tableCmd = connection.CreateCommand();
+
+                tableCmd.CommandText =
+                    $"DELETE from daily_coding WHERE Id = '{recordId}'";
+
+                int rowCount = tableCmd.ExecuteNonQuery();
+
+                if (rowCount == 0)
+                {
+                    AnsiConsole.WriteLine($"\n\nRecord with ID {recordId} does not exist \n\n");
+                    DeleteRecord(connectionString);
+                }
+            }
+            AnsiConsole.WriteLine($"\n\nRecord with ID {recordId} has been deleted.\n\n");
+
         }
 
         public static string GetDateInput()
