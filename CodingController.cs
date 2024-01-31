@@ -13,39 +13,45 @@ namespace CodingTracker
     {
         public static void GetAllRecords(string connectionString)
         {
+            List<CodingRecord> tableData = new List<CodingRecord>();
+
             using (var connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
-                var tableCmd = connection.CreateCommand();
 
+                var tableCmd = connection.CreateCommand();
                 tableCmd.CommandText = "SELECT * FROM daily_coding";
 
-                List<CodingRecord> tableData = new();
-
-                SqliteDataReader reader = tableCmd.ExecuteReader();
-
-                if (reader.HasRows)
+                using (SqliteDataReader reader = tableCmd.ExecuteReader())
                 {
-                    while (reader.Read())
+                    if (reader.HasRows)
                     {
-                        tableData.Add(new CodingRecord
+                        while (reader.Read())
                         {
-                            Id = reader.GetInt32(0),
-                            StartTime = DateTime.ParseExact(reader.GetString(1), "dd-MM-yy", new CultureInfo("en-US")),
-                            EndTime = DateTime.ParseExact(reader.GetString(1), "dd-MM-yy", new CultureInfo("en-US")),
+                            CodingRecord record = new CodingRecord
+                            {
+                                Id = reader.GetInt32(0),
+                                StartTime = reader.GetDateTime(1),
+                                EndTime = reader.GetDateTime(2),
+                            };
 
-                        });
+                            // Calculate and set the duration as TimeSpan
+                            record.Duration = record.EndTime - record.StartTime;
+
+                            tableData.Add(record);
+                        }
                     }
+                    else
+                    {
+                        AnsiConsole.WriteLine("No rows found\n");
+                    }
+                    connection.Close();
+                    TableVisualisationEngine.DisplayRecords(tableData);
                 }
-                else
-                {
-                    AnsiConsole.WriteLine("No rows found");
-                }
-                connection.Close();
-
-
-
             }
         }
+
+
+
     }
 }

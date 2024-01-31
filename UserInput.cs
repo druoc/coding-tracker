@@ -41,6 +41,7 @@ namespace CodingTracker
                         break;
                     case "Close application":
                         AnsiConsole.WriteLine("Bye!\n\n");
+                        closeApp = true;
                         break;
                 }
             }
