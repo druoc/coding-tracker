@@ -31,8 +31,8 @@ namespace CodingTracker
                             CodingRecord record = new CodingRecord
                             {
                                 Id = reader.GetInt32(0),
-                                StartTime = reader.GetDateTime(1),
-                                EndTime = reader.GetDateTime(2),
+                                StartTime = DateTime.ParseExact(reader.GetString(1), "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
+                                EndTime = DateTime.ParseExact(reader.GetString(2), "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
                             };
 
                             // Calculate and set the duration as TimeSpan
@@ -49,6 +49,38 @@ namespace CodingTracker
                     TableVisualisationEngine.DisplayRecords(tableData);
                 }
             }
+        }
+
+        public static void InsertRecord(string connectionString)
+        {
+            string startTime = GetDateInput();
+            string endTime = GetDateInput();
+
+            using (var connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+                var tableCmd = connection.CreateCommand();
+
+                tableCmd.CommandText =
+                    $"INSERT INTO daily_coding(StartTime, EndTime) VALUES('{startTime}', '{endTime}')";
+
+                tableCmd.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+
+        public static string GetDateInput()
+        {
+            var dateInput = AnsiConsole.Ask<string>("Please enter the date: (Format: dd-MM-yyyy HH:mm) Type 0 to return to main menu");
+
+            while (!DateTime.TryParseExact(dateInput, "dd-MM-yyyy HH:mm", new CultureInfo("en-US"), DateTimeStyles.None, out _))
+            {
+                AnsiConsole.WriteLine("\n\nInvalid date. Please enter a correctly formatted date (dd-MM-yyyy HH:mm). Type 0 to return to main menu or try again\n\n");
+                dateInput = AnsiConsole.Ask<string>("Please enter the date: (Format: dd-MM-yyyy HH:mm) Type 0 to return to main menu");
+            }
+
+            return dateInput;
+
         }
 
 

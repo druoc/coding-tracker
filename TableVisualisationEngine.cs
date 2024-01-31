@@ -21,8 +21,8 @@ namespace CodingTracker
             {
                 table.AddRow(
                     record.Id.ToString(),
-                    record.StartTime.ToString("yyyy-MM-dd HH:mm:ss"),
-                    record.EndTime.ToString("yyyy-MM-dd HH:mm:ss"),
+                    record.StartTime.ToString("dd-MM-yyyy HH:mm"),
+                    record.EndTime.ToString("dd-MM-yyyy HH:mm"),
                     record.Duration.ToString("hh\\:mm")
                 );
             }

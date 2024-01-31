@@ -31,7 +31,7 @@ namespace CodingTracker
                         CodingController.GetAllRecords(connectionString);
                         break;
                     case "Insert a record":
-                        AnsiConsole.WriteLine("Insert a record\n\n");
+                        CodingController.InsertRecord(connectionString);
                         break;
                     case "Update a record":
                         AnsiConsole.WriteLine("Update a record\n\n");
